@@ -1,6 +1,6 @@
 import { Typography } from '@material-ui/core';
 import Link from '@material-ui/core/Link';
-import { createStyles, Theme, withStyles, WithStyles, makeStyles } from '@material-ui/core/styles';
+import {  Theme, makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -222,10 +222,7 @@ export default function Dashboard() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-        
-        { !carritoClick && <ContenidoInicioScreen />
-        }
-        
+        <ContenidoInicioScreen />
         </Container>
       </main>
     </div>

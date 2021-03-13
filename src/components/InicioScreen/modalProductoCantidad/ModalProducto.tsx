@@ -9,16 +9,9 @@ import { faAngleDoubleLeft, faAngleDoubleRight, faCheckCircle, faShoppingCart, f
 import { AppBar, ButtonGroup, IconButton, Toolbar } from '@material-ui/core';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import TextField from '@material-ui/core/TextField';
+import { red, green } from '../../../style/styles';
+import { ProductoI } from '../../../types/types';
 
-const red = {
-  color: '#a20a0a',
-  border: 0,
-};
-
-const green = {
-  color: '#61b15a',
-  border: 0,
-};
 
 const DialogActions = withStyles((theme: Theme) => ({
   root: {
@@ -30,9 +23,9 @@ const DialogActions = withStyles((theme: Theme) => ({
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    
+
     root: {
-      alignContent: 'center',  
+      alignContent: 'center',
       justifyContent: 'space-around',
 
       '& .MuiTextField-root': {
@@ -41,39 +34,39 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     centerContent: {
-      alignSelf: 'center',  
-    },  
+      alignSelf: 'center',
+    },
     appBar: {
       position: 'relative',
-      },
-      icons:{
-        justifyContent: 'space-around',
-      },
+    },
+    icons: {
+      justifyContent: 'space-around',
+    },
     title: {
       marginLeft: theme.spacing(2),
       flex: 1,
     },
     media: {
-      //height: 0,
-     //// paddingTop: '56.25%', // 16:9
       width: 180,
     },
   }),
 );
 
-
-const [counter, setCounter] = useState(0);
-
-const incrementar = ( numero: number = 1 ):void => {
-    setCounter( counter + numero);
+const producto:  ProductoI = {
+  id: 4,
+  nombre: "bb",
+  precio: 5,
+  cantidad: 6,
+  descripcion: "nn",
+  marca: "  ",
+  stock: 7,
 }
 
-const decrementar = ( numero: number = 1 ):void => {
-  setCounter( counter + numero);
-}
+
+const { nombre, precio, cantidad, marca } = producto;
 
 
-export default function ModalProducto() {
+export const ModalProducto = ( ) => {  
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -85,15 +78,49 @@ export default function ModalProducto() {
     setOpen(false);
   };
 
+  const handleGuardarCant = () => {
+    setOpen(false);
+    console.log(counter);
+  };
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+  const [counter, setCounter] = useState(0);
+
+  const incrementar = (numero: number = 1): void => {
+    setCounter(counter + numero);
+  }
+
+  const decrementar = (numero: number = 1): void => {
+    setCounter(counter - numero);
+  }
+
+  const reset = (numero: number = 1): void => {
+    setCounter( numero );
+  }
+
+
+
 
   return (
+
     <React.Fragment>
       <Button size="small" color="primary" onClick={handleClickOpen} >
-        <span>Comprar</span>   
-        <FontAwesomeIcon icon={ faShoppingCart } /> 
-        </Button>
-        
-        
+        <span>Comprar</span>
+        <FontAwesomeIcon icon={faShoppingCart} />
+      </Button>
+
+
       <Dialog
         maxWidth={'sm'}
         open={open}
@@ -102,45 +129,47 @@ export default function ModalProducto() {
       >
         <AppBar className={classes.appBar}>
           <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            Cuanto de La Tranquera vas a llevar? 
+            <Typography variant="h6" className={classes.title}>
+              Cuanto de La Tranquera vas a llevar?
             </Typography>
           </Toolbar>
         </AppBar>
         <DialogContent dividers className={classes.centerContent}>
-          
-        
-        
-        <img className={classes.media} src="https://http2.mlstatic.com/D_NQ_NP_921728-MLA42481602854_072020-O.jpg" title="Live from space album cover" />
 
-        <Typography gutterBottom>$150.00 - La Tranquera</Typography>
-        <Typography gutterBottom>Yerba - 500gr</Typography>
-        <br/>
-        <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
-            
-            <Button onClick={ decrementar }><FontAwesomeIcon icon={ faAngleDoubleLeft }  size="3x" /></Button>
-           <TextField
-          id="outlined-read-only-input"
-          label="Cantidad"
-          value={  counter > 0 ? counter : 0}
-          type="number"
-          InputProps={{
-            readOnly: true,
-          }}
-          variant="outlined"
-        />
-            <Button onClick={ incrementar } ><FontAwesomeIcon icon={ faAngleDoubleRight }  size="3x" /></Button>
-          </ButtonGroup> 
-          <br/>
+
+
+          <img className={classes.media} src="https://http2.mlstatic.com/D_NQ_NP_921728-MLA42481602854_072020-O.jpg" title="Live from space album cover" />
+
+          <Typography gutterBottom> {precio} - {nombre} - { true && marca }</Typography>
+          <Typography gutterBottom>Yerba - 500gr</Typography>
+          <br />
+          <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
+
+          <TextField
+              id="outlined-read-only-input"
+              label="Cantidad"
+              value={counter >= 1 ? counter : reset()}
+              type="number"
+              InputProps={{
+                readOnly: true,
+              }}
+              variant="outlined"
+            />
+
+            <Button  onClick={ () => incrementar() }><FontAwesomeIcon icon={faAngleDoubleLeft} size="3x" /></Button>
+            <Button  onClick={ () => reset() }> 1 </Button>
+            <Button  onClick={ () => decrementar() } ><FontAwesomeIcon icon={faAngleDoubleRight} size="3x" /></Button>
+          </ButtonGroup>
+          <br />
         </DialogContent>
-        <DialogActions className={classes.icons } >
-        <IconButton edge="start" style={red} onClick={handleClose} aria-label="close">
-            <FontAwesomeIcon icon={ faTimesCircle } size="2x" /> 
-            </IconButton>
-            <IconButton autoFocus style={green}  onClick={handleClose}>
-              <FontAwesomeIcon icon={ faCheckCircle }  size="2x" />
-            </IconButton>
-       </DialogActions>
+        <DialogActions className={classes.icons} >
+          <IconButton edge="start" style={red} onClick={handleClose} aria-label="close">
+            <FontAwesomeIcon icon={faTimesCircle} size="2x" />
+          </IconButton>
+          <IconButton autoFocus style={green} onClick={handleGuardarCant}>
+            <FontAwesomeIcon icon={faCheckCircle} size="2x" />
+          </IconButton>
+        </DialogActions>
       </Dialog>
     </React.Fragment>
   );

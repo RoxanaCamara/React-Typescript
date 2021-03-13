@@ -1,12 +1,8 @@
 import React from 'react';
-import { createStyles, Theme, withStyles, WithStyles, makeStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, WithStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -16,9 +12,6 @@ import { AccountCircle } from '@material-ui/icons';
 import { Copyright } from './Copyright';
 import Link from '@material-ui/core/Link';
 import ModalRegister from './ModalRegister';
-
-
-
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -77,7 +70,7 @@ export interface DialogTitleProps extends WithStyles<typeof styles> {
   onClose: () => void;
 }
 
-const DialogTitle = withStyles(styles)((props: DialogTitleProps) => {
+/*const DialogTitle = withStyles(styles)((props: DialogTitleProps) => {
   const { children, classes, onClose, ...other } = props;
   return (
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
@@ -102,7 +95,7 @@ const DialogActions = withStyles((theme: Theme) => ({
     margin: 10,
     padding: theme.spacing(1),
   },
-}))(MuiDialogActions);
+}))(MuiDialogActions);*/
 
 export default function ModalLogin() {
   const [open, setOpen] = React.useState(false);

@@ -5,7 +5,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import ModalProducto from '../modalProductoCantidad/ModalProducto';
+import { ProductoI } from '../../../types/types';
+import { ModalProducto } from '../modalProductoCantidad/ModalProducto';
 
 
 const useStyles = makeStyles({
@@ -23,6 +24,13 @@ const useStyles = makeStyles({
     alignContent: 'left'
   }
 });
+
+const p  = {
+  nombre: "Aceite",
+  precio: 140.00,
+  cantidad: 0 , 
+  stock: 129,
+}
 
 export default function CardProductoInicioScreen() {
   const classes = useStyles();
