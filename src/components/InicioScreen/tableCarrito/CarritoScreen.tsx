@@ -23,7 +23,6 @@ import {  faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 const TAX_RATE = 0.07;
 
-
 function ccyFormat(num: number) {
   return `${num.toFixed(2)}`;
 }
@@ -87,6 +86,24 @@ const Transition = React.forwardRef(function Transition(
 });
 
 export default function FullScreenDialog() {
+
+
+  /*Nare */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 

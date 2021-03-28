@@ -1,13 +1,12 @@
-import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { InicioScreen } from './components/InicioScreen/InicioScreen'
+import AppRouters from './routers/AppRouters'
 import store from './store/store'
 
 
 render(
   <Provider store={store}>
-    <InicioScreen />
+    <AppRouters />
   </Provider>,
   document.getElementById('root')
 )

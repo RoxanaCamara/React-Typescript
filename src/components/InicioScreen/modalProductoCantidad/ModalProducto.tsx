@@ -10,7 +10,7 @@ import { AppBar, ButtonGroup, IconButton, Toolbar } from '@material-ui/core';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import TextField from '@material-ui/core/TextField';
 import { red, green } from '../../../style/styles';
-import { ProductoI } from '../../../types/types';
+import { ProductoState } from '../../../types/types';
 
 
 const DialogActions = withStyles((theme: Theme) => ({
@@ -52,21 +52,20 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const producto:  ProductoI = {
+const producto:  ProductoState = {
   id: 4,
   nombre: "bb",
   precio: 5,
-  cantidad: 6,
   descripcion: "nn",
   marca: "  ",
   stock: 7,
 }
 
 
-const { nombre, precio, cantidad, marca } = producto;
+const { nombre, precio, marca } = producto;
 
 
-export const ModalProducto = ( ) => {  
+export const ModalProducto = () => {  
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -82,18 +81,6 @@ export const ModalProducto = ( ) => {
     setOpen(false);
     console.log(counter);
   };
-
-  
-  
-
-
-
-
-
-
-
-
-
 
   const [counter, setCounter] = useState(0);
 
@@ -130,7 +117,7 @@ export const ModalProducto = ( ) => {
         <AppBar className={classes.appBar}>
           <Toolbar>
             <Typography variant="h6" className={classes.title}>
-              Cuanto de La Tranquera vas a llevar?
+              Cuanto de { nombre } marca { marca } vas a llevar?
             </Typography>
           </Toolbar>
         </AppBar>

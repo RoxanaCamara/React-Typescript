@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect} from 'react';
 import clsx from 'clsx';
 import { makeStyles, fade } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -9,18 +9,20 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { mainListItems } from './mainListItems';
-import ContenidoInicioScreen from './cardProductosInicio/ContenidoInicioScreen';
-import { faHome, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { InputBase } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import CarritoScreen from './tableCarrito/CarritoScreen';
 import ModalLogin from '../login/ModalLogin';
+import { InicioScreen } from './InicioScreen';
+import { getProductos } from '../../helpers/storeApi';
+import { connect } from 'react-redux';
+
 
 
 const drawerWidth = 240;
@@ -146,21 +148,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard() {
+ function Dashboard(props: any) {
+
+  const {productos}  = props 
+  console.log(productos)
+  
+  useEffect( () => {
+    props.getProductos()
+  }, []);
+  
+
+
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(true);
-
   const handleDrawerOpen = () => {
     setOpen(true);
   };
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
-  const [carritoClick, setcarritoClick] = useState(false);
-
 
   return (
     <div className={classes.root}>
@@ -222,9 +229,14 @@ export default function Dashboard() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-        <ContenidoInicioScreen />
+        <InicioScreen />
         </Container>
       </main>
     </div>
   );
 }
+const mapStateToProps = (state: any) => ({
+  productos: state.carrito.productosLista
+})
+
+export default connect(mapStateToProps, {getProductos})  (Dashboard);

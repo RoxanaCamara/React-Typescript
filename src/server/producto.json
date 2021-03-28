@@ -1,0 +1,17 @@
+
+{
+  
+  "producto": {
+    
+    "producto": {
+      "id": 12345,
+      "nombre": "Aceite",
+      "precio": 1223.56,
+      "descripcion": "",
+      "marca": "Soles Giran",
+      "stock": 124
+    },
+  
+    "cantidad": 10
+  }
+}

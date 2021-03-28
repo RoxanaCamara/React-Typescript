@@ -3,8 +3,10 @@ import {composeWithDevTools} from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import RootReducer from "../reducers/RootReducer";
 
-const Store = createStore(RootReducer, composeWithDevTools(applyMiddleware(thunk)));
+const initialState = {};
+
+const store = createStore(RootReducer,initialState, composeWithDevTools(applyMiddleware(thunk)));
 
 export type RootStore = ReturnType<typeof RootReducer>
 
-export default Store
+export default store

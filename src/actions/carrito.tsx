@@ -1,32 +1,24 @@
-import { ADD_PRODUCTO, CarritoActionTypes, DELETE_PRODUCTO, ProductoI } from "../types/types"
+import { ADD_PRODUCTO, CarritoActionTypes, DELETE_PRODUCTO, ProductoCarritoState, UPDATE_PRODUCTO } from "../types/types"
 
 
-export function addProducto(producto: ProductoI): CarritoActionTypes {
+export function addProducto(producto: ProductoCarritoState): CarritoActionTypes {
   return {
     type: ADD_PRODUCTO,
     payload: producto
   }
 }
 
-export function deleteProducto(producto: ProductoI): CarritoActionTypes {
+export function deleteProducto(producto: ProductoCarritoState): CarritoActionTypes {
     return {
       type: DELETE_PRODUCTO,
       payload: producto
     }
   }
 
-/*export function incrementProducto(producto: ProductoI): CarritoActionTypes {
-  return {
-    type: INCREMENT_PRODUCTO,
-    payload: producto
-  }
-}
 
-export function decrementProducto(producto: ProductoI): CarritoActionTyprd {
+  export function updateProducto(producto: ProductoCarritoState): CarritoActionTypes {
     return {
-      type: DECREMENT_PRODUCTO,
+      type: UPDATE_PRODUCTO,
       payload: producto
     }
   }
-  
-*/
